@@ -18,7 +18,7 @@ module.exports = function({ adminMeta, entry, outputPath }) {
 
 	const rules = [
 		{
-			test: /\.js$/,
+			test: /\.(ts|js)x?$/,
 			exclude: [/node_modules(?!(?:\/|\\)@keystonejs(?:\/|\\)app-admin-ui)/],
 			use: [
 				{
@@ -94,6 +94,7 @@ module.exports = function({ adminMeta, entry, outputPath }) {
 			rules
 		},
 		resolve: {
+			extensions: ['.tsx', '.ts', '.js', '.jsx'],
 			alias: {
 				// we only want to bundle a single version of react
 				// but we don't want to assume a consumer has the same version of react
@@ -101,6 +102,8 @@ module.exports = function({ adminMeta, entry, outputPath }) {
 				// which depends on the version of react that keystone uses
 				react$: require.resolve('react'),
 				'react-dom$': require.resolve('react-dom'),
+				'@apollo/react-hooks$': require.resolve('@apollo/react-hooks'),
+
 				// we also only want a single version of react-router-dom so that all usages of it are using the same context object
 				// why is this using path.dirname(require.resolve('react-router-dom/package.json')) over require.resolve('react-router-dom')?
 				// because react-router-dom has module builds which are better for bundlers

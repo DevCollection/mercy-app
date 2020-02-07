@@ -8,11 +8,11 @@ import { StickyProvider } from 'contexts/app/app.provider';
 import { SearchProvider } from 'contexts/search/search.provider';
 import LanguageProvider from 'contexts/language/language.provider';
 
-import AppLayout from 'containers/LayoutContainer/AppLayout';
+import AppLayout from 'containers/LayoutContainer/AppLayout-mercy';
 import { useDeviceType } from 'helper/useDeviceType';
 
 // Language translation files
-import localEn from 'data/translation/en.json';
+import localEn from 'data/translation/en-mercy.json';
 import localAr from 'data/translation/ar.json';
 import localEs from 'data/translation/es.json';
 import localDe from 'data/translation/de.json';
@@ -28,47 +28,47 @@ import { GlobalStyle } from 'styled/global.style';
 
 // Language translation Config
 const messages = {
-  en: localEn,
-  ar: localAr,
-  es: localEs,
-  de: localDe,
-  zh: localCn,
-  he: localIl,
+	en: localEn,
+	ar: localAr,
+	es: localEs,
+	de: localDe,
+	zh: localCn,
+	he: localIl
 };
 
 export default function ExtendedApp({
-  Component,
-  pageProps,
-  query,
-  userAgent,
+	Component,
+	pageProps,
+	query,
+	userAgent
 }) {
-  const deviceType = useDeviceType(userAgent);
+	const deviceType = useDeviceType(userAgent);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <LanguageProvider messages={messages}>
-        <CartProvider>
-          <SearchProvider query={query}>
-            <StickyProvider>
-              <AuthProvider>
-                <>
-                  <AppLayout deviceType={deviceType}>
-                    <Component {...pageProps} deviceType={deviceType} />
-                  </AppLayout>
-                  <GlobalStyle />
-                </>
-              </AuthProvider>
-            </StickyProvider>
-          </SearchProvider>
-        </CartProvider>
-      </LanguageProvider>
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<LanguageProvider messages={messages}>
+				<CartProvider>
+					<SearchProvider query={query}>
+						<StickyProvider>
+							<AuthProvider>
+								<>
+									<AppLayout deviceType={deviceType}>
+										<Component {...pageProps} deviceType={deviceType} />
+									</AppLayout>
+									<GlobalStyle />
+								</>
+							</AuthProvider>
+						</StickyProvider>
+					</SearchProvider>
+				</CartProvider>
+			</LanguageProvider>
+		</ThemeProvider>
+	);
 }
 
 ExtendedApp.getInitialProps = async appContext => {
-  const appProps = await App.getInitialProps(appContext);
-  const { req, query } = appContext.ctx;
-  const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-  return { ...appProps, userAgent, query };
+	const appProps = await App.getInitialProps(appContext);
+	const { req, query } = appContext.ctx;
+	const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+	return { ...appProps, userAgent, query };
 };
