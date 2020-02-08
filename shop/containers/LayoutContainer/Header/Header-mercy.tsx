@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import Link from 'next/link';
 import Router from 'next/router';
 import { openModal } from '@redq/reuse-modal';
-import NavLink from 'components/NavLink/NavLink';
+import NavLink from 'components/NavLink/NavLink-mercy';
 import Popover from 'components/Popover/Popover';
 import SearchBox from 'components/SearchBox/SearchBox';
 import { SearchContext } from 'contexts/search/search.context';
@@ -66,6 +66,7 @@ type HeaderProps = {
 	className?: string;
 	token: string;
 	pathname: string;
+	ssr?: boolean;
 };
 
 const MenuArray = [
@@ -137,7 +138,8 @@ const Header: React.FC<HeaderProps> = ({
 	style,
 	className,
 	token,
-	pathname
+	pathname,
+	ssr
 }) => {
 	const {
 		state: { lang },
@@ -257,7 +259,7 @@ const Header: React.FC<HeaderProps> = ({
 			<HeaderWrapper style={style} className={className}>
 				<HeaderLeftSide>
 					<DrawerWrapper>
-						<MobileDrawer />
+						<MobileDrawer ssr={ssr} />
 					</DrawerWrapper>
 					{/*<Logo
           onClick={() =>

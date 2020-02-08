@@ -37,16 +37,23 @@ type LayoutProps = {
 		desktop: boolean;
 	};
 	token?: string;
+	ssr?: boolean;
 };
 
 const Layout: FunctionComponent<LayoutProps> = ({
 	className,
 	children,
 	deviceType: { mobile, tablet, desktop },
-	token
+	token,
+	ssr
 }) => {
 	const isSticky = useStickyState('isSticky');
-	const { pathname } = useRouter();
+	let pathname;
+	if (ssr) {
+		pathname = useRouter();
+	} else {
+		pathname = window.location.pathname;
+	}
 
 	const isHomePage =
 		pathname === HOME_PAGE ||
@@ -83,6 +90,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
 						}`}
 						token={token}
 						pathname={pathname}
+						ssr={ssr}
 					/>
 				</Sticky>
 			)}

@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'components/Drawer/Drawer';
 import Button from 'components/Button/Button';
-import NavLink from 'components/NavLink/NavLink';
+import NavLink from 'components/NavLink/NavLink-mercy';
 import { CloseIcon } from 'components/AllSvgIcon';
 import { DrawerContext } from 'contexts/drawer/drawer.context';
 import { AuthContext } from 'contexts/auth/auth.context';
@@ -130,7 +130,7 @@ const DrawerMenuItems = [
 //   },
 // ];
 
-const MobileDrawer: React.FunctionComponent = () => {
+const MobileDrawer: React.FunctionComponent<any> = ({ ssr }) => {
 	const { state, dispatch } = useContext<any>(DrawerContext);
 	const {
 		authState: { isAuthenticated },
@@ -230,6 +230,7 @@ const MobileDrawer: React.FunctionComponent = () => {
 						{DrawerMenuItems.map(item => (
 							<DrawerMenuItem key={item.id}>
 								<NavLink
+									ssr={ssr}
 									onClick={toggleHandler}
 									href={item.href}
 									label={item.label}
