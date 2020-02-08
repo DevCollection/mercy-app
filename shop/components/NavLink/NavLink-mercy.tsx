@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { Link as RRLink } from 'react-router-dom';
+
 import { withRouter } from 'next/router';
 import { FormattedMessage } from 'react-intl';
 
@@ -66,8 +68,8 @@ const NavLink: React.SFC<NavLinkProps> = ({
 					</a>
 				</Link>
 			) : (
-				<a
-					href={href}
+				<RRLink
+					to={href}
 					className={pathname === href ? ' current-page' : ''}
 					style={{ display: 'flex', alignItems: 'center' }}
 				>
@@ -82,7 +84,7 @@ const NavLink: React.SFC<NavLinkProps> = ({
 							label
 						)}
 					</span>
-				</a>
+				</RRLink>
 			)}
 		</div>
 	);

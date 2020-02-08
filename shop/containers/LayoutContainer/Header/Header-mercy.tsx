@@ -310,13 +310,13 @@ const Header: React.FC<HeaderProps> = ({
 				<HeaderRightSide>
 					<NavLink
 						className="menu-item"
-						href={OFFER_PAGE}
+						href={ssr ? OFFER_PAGE : OFFER_PAGE.substr(1)}
 						label="Offer"
 						intlId="navlinkOffer"
 					/>
 					<NavLink
 						className="menu-item"
-						href={HELP_PAGE}
+						href={ssr ? HELP_PAGE : HELP_PAGE.substr(1)}
 						label="Need Help"
 						intlId="navlinkHelp"
 						iconClass="menu-icon"
@@ -355,15 +355,17 @@ const Header: React.FC<HeaderProps> = ({
 							handler={<img src={UserImage} alt="user" />}
 							content={
 								<>
-									{DropDownMenuArray.map((item, idx) => (
-										<NavLink
-											key={idx}
-											className="menu-item"
-											href={item.link}
-											label={item.label}
-											intlId={item.intlId}
-										/>
-									))}
+									{DropDownMenuArray.map((item, idx) => {
+										return (
+											<NavLink
+												key={idx}
+												className="menu-item"
+												href={ssr ? item.link : item.link.substr(1)}
+												label={item.label}
+												intlId={item.intlId}
+											/>
+										);
+									})}
 									<div className="menu-item" onClick={handleLogout}>
 										<a>
 											<span>
