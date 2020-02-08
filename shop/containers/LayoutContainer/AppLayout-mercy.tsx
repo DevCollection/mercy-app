@@ -63,6 +63,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
 		pathname === BOOK_PAGE ||
 		pathname === FURNITURE_PAGE ||
 		pathname === BAGS_PAGE;
+	console.log(isHomePage);
 	return (
 		<LayoutWrapper className={`layoutWrapper ${className}`}>
 			{(mobile || tablet) && (

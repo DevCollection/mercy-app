@@ -486,22 +486,22 @@ export const DrawerClose = styled.div`
 export const DrawerProfile = styled.div`
 					background: -webkit-linear-gradient(
 						110deg,
-						#fff 60%,
+						gold 60%,
 						#121212 60%
 					);
 					background: -o-linear-gradient(
 						110deg,
-						#fff 60%,
+						gold 60%,
 						#121212 60%
 					);
 					background: -moz-linear-gradient(
 						110deg,
-						#fff 60%,
+						gold 60%,
 						#121212 60%
 					);
 					background: linear-gradient(
 						110deg,
-						#fff 60%,
+						gold 60%,
 						#121212 60%
 					);
 					// background-color: ${themeGet('colors.lightColor', '#F7F7F7')};

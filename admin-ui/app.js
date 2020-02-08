@@ -9,7 +9,7 @@ import LanguageProvider from 'contexts/language/language.provider';
 
 import AppLayout from 'containers/LayoutContainer/AppLayout-mercy';
 import { useDeviceType } from 'helper/useDeviceType';
-import getAllUrlParams from './helpers/getAllUrlParams';
+import getAllUrlParams from 'helper/getAllUrlParams-mercy';
 // Language translation files
 import localEn from 'data/translation/en-mercy.json';
 import localAr from 'data/translation/ar.json';
@@ -24,6 +24,7 @@ import 'rc-collapse/assets/index.css';
 import 'react-multi-carousel/lib/styles.css';
 import '@redq/reuse-modal/lib/index.css';
 import { GlobalStyle } from 'styled/global.style';
+import { withRouter } from 'react-router-dom';
 
 // Language translation Config
 const messages = {
@@ -35,9 +36,9 @@ const messages = {
 	he: localIl
 };
 
-export default ({ children }) => {
+export default withRouter(({ children, location }) => {
 	const deviceType = useDeviceType(window.navigator.userAgent);
-	const query = getAllUrlParams();
+	const query = location.state ? location.state.query : getAllUrlParams();
 	return (
 		<ThemeProvider theme={theme}>
 			<LanguageProvider messages={messages}>
@@ -59,4 +60,4 @@ export default ({ children }) => {
 			</LanguageProvider>
 		</ThemeProvider>
 	);
-};
+});
