@@ -95,6 +95,7 @@ module.exports = function({ adminMeta, entry, outputPath }) {
 		},
 		resolve: {
 			extensions: ['.tsx', '.ts', '.js', '.jsx'],
+			modules: [path.resolve(__dirname, '../../shop/'), 'node_modules'],
 			alias: {
 				// we only want to bundle a single version of react
 				// but we don't want to assume a consumer has the same version of react
