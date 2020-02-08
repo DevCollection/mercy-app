@@ -12,7 +12,6 @@ import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button/Button';
 import LanguageContext from 'contexts/language/language.context';
 import MobileDrawer from './MobileDrawer-mercy';
-import { DrawerWrapper } from './Header.style';
 import { DrawerProvider } from 'contexts/drawer/drawer.provider';
 
 import {
@@ -32,6 +31,7 @@ import {
 	SAFlag
 } from 'components/AllSvgIcon';
 import HeaderWrapper, {
+	DrawerWrapper,
 	HeaderLeftSide,
 	HeaderRightSide,
 	Logo,
@@ -43,7 +43,7 @@ import HeaderWrapper, {
 	LangSwithcer,
 	Flag,
 	TypeIcon
-} from './Header.style';
+} from './Header-mercy.style';
 import Logoimage from 'image/logo.svg';
 import UserImage from 'image/user.jpg';
 import {

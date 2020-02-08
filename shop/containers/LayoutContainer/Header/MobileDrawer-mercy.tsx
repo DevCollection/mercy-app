@@ -22,7 +22,7 @@ import {
 	DrawerMenu,
 	DrawerMenuItem,
 	UesrOptionMenu
-} from './Header.style';
+} from './Header-mercy.style';
 import UserImage from 'image/user.jpg';
 
 import {
@@ -39,49 +39,57 @@ const DrawerMenuItems = [
 		id: 1,
 		intlLabelId: 'sideBarProjects',
 		label: 'Projects',
-		href: '/'
+		href: '/',
+		color: ['#E74B3C', '#C0382B']
 	},
 	{
 		id: 2,
 		intlLabelId: 'sideBarOrders',
 		label: 'Orders',
-		href: '/'
+		href: '/',
+		color: ['#E67E22', '#D35400']
 	},
 	{
 		id: 3,
 		intlLabelId: 'sideBarProducts',
 		label: 'Products',
-		href: '/'
+		href: '/',
+		color: ['#FFA800', '#FFCD00']
 	},
 	{
 		id: 4,
 		intlLabelId: 'sideBarContacts',
 		label: 'Contacts',
-		href: '/'
+		href: '/',
+		color: ['#9B58B6', '#8E43AD']
 	},
 	{
 		id: 5,
 		intlLabelId: 'sideBarCollaborate',
 		label: 'Collaborate',
-		href: '/'
+		href: '/',
+		color: ['#396E81', '#356171']
 	},
 	{
 		id: 6,
 		intlLabelId: 'sideBarAnalytics',
 		label: 'Analytics',
-		href: '/'
+		href: '/',
+		color: ['#745DC5', '#5B48A2']
 	},
 	{
 		id: 7,
 		intlLabelId: 'sideBarSettings',
 		label: 'Settings',
-		href: '/'
+		href: '/',
+		color: ['#3497DB', '#2980B9']
 	},
 	{
 		id: 8,
 		intlLabelId: 'sideBarPlugins',
 		label: 'Plugins',
-		href: '/'
+		href: '/',
+		color: ['#345F41', '#2C5036']
 	}
 ];
 
@@ -183,7 +191,7 @@ const MobileDrawer: React.FunctionComponent<any> = ({ ssr }) => {
 
 	return (
 		<Drawer
-			width="316px"
+			width="100%"
 			drawerHandler={
 				<HamburgerIcon>
 					<span />
@@ -228,7 +236,11 @@ const MobileDrawer: React.FunctionComponent<any> = ({ ssr }) => {
 
 					<DrawerMenu>
 						{DrawerMenuItems.map(item => (
-							<DrawerMenuItem key={item.id}>
+							<DrawerMenuItem
+								color0={item.color[0]}
+								color1={item.color[1]}
+								key={item.id}
+							>
 								<NavLink
 									ssr={ssr}
 									onClick={toggleHandler}

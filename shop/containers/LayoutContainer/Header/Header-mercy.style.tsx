@@ -50,8 +50,8 @@ const HeaderWrapper = styled.header`
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #fff;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+	// background-color: #fff;
+	// box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 	transition: all 0.3s ease;
 	&.home {
 		position: absolute;
@@ -464,6 +464,7 @@ export const HamburgerIcon = styled.div`
 
 export const DrawerContentWrapper = styled.div`
 	padding-top: 60px;
+	background-color: #121212;
 `;
 
 export const DrawerClose = styled.div`
@@ -483,9 +484,29 @@ export const DrawerClose = styled.div`
 `;
 
 export const DrawerProfile = styled.div`
-	background-color: ${themeGet('colors.lightColor', '#F7F7F7')};
-	padding: 45px;
-`;
+					background: -webkit-linear-gradient(
+						110deg,
+						#fff 60%,
+						#121212 60%
+					);
+					background: -o-linear-gradient(
+						110deg,
+						#fff 60%,
+						#121212 60%
+					);
+					background: -moz-linear-gradient(
+						110deg,
+						#fff 60%,
+						#121212 60%
+					);
+					background: linear-gradient(
+						110deg,
+						#fff 60%,
+						#121212 60%
+					);
+					// background-color: ${themeGet('colors.lightColor', '#F7F7F7')};
+					padding: 45px;
+				`;
 
 export const LogoutView = styled.div`
 	display: flex;
@@ -543,23 +564,42 @@ export const UserDetails = styled.div`
 `;
 
 export const DrawerMenu = styled.div`
-	padding: 40px 0;
+	padding: 40px 40px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const DrawerMenuItem = styled.div`
-	&:last-child {
-		.drawer_menu_item {
-			margin-bottom: 0;
-		}
-	}
+	// &:last-child {
+	// 	.drawer_menu_item {
+	// 		margin-bottom: 0;
+	// 	}
+	// }
 	.drawer_menu_item {
+		margin: 10px;
+		width: 300px;
+		height: 150px;
+		// background-color: ${props => props.color};
+		background: -webkit-linear-gradient(110deg, ${props =>
+			props.color0} 60%, ${props => props.color1} 60%);
+  	background: -o-linear-gradient(110deg, ${props =>
+			props.color0} 60%, ${props => props.color1} 60%);
+  	background: -moz-linear-gradient(110deg, ${props =>
+			props.color0} 60%, ${props => props.color1} 60%);
+  	background: linear-gradient(110deg, ${props => props.color0} 60%, ${props =>
+	props.color1} 60%);
+		box-shadow: 0px 2px 5px 0px rgba(9, 30, 66, 0.12);
+		border-radius: 2px;
+
 		a,
 		.logoutBtn {
 			display: block;
-			padding: 5px 45px;
-			font-size: 14px;
-			font-weight: 400;
-			color: ${themeGet('colors.darkBold', '#0D1136')};
+			padding: 15px 35px;
+			font-size: 16px;
+			font-weight: 600;
+			color: ${themeGet('colors.white', '#fff')};
 			margin-bottom: 19px;
 			position: relative;
 			transition: 0.15s ease-in-out;
@@ -589,7 +629,11 @@ export const DrawerMenuItem = styled.div`
 `;
 
 export const UesrOptionMenu = styled.div`
-	padding: 45px 0;
+	padding: 40px 40px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
 	border-top: 1px solid ${themeGet('colors.lightDarkColor', '#E6E6E6')};
 `;
 

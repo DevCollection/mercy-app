@@ -15,7 +15,7 @@ import {
 	FURNITURE_PAGE,
 	BOOK_PAGE
 } from 'constants/navigation';
-const MobileHeader = dynamic(() => import('./Header/MobileHeader'), {
+const MobileHeader = dynamic(() => import('./Header/MobileHeader-mercy'), {
 	ssr: false
 });
 const LayoutWrapper = styled.div`
