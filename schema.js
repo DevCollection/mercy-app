@@ -72,7 +72,11 @@ exports.Address = {
 	fields: {
 		name: { type: Text },
 		type: { type: Text },
-		info: { type: Text }
+		info: { type: Text },
+		user: {
+			type: Relationship,
+			ref: 'User'
+		}
 	},
 	access: {
 		read: access.userIsAdminOrOwner,
@@ -89,7 +93,11 @@ exports.Card = {
 		name: { type: Text },
 		type: { type: Text },
 		cardType: { type: Text },
-		lastFourDigit: { type: Integer }
+		lastFourDigit: { type: Integer },
+		user: {
+			type: Relationship,
+			ref: 'User'
+		}
 	},
 	access: {
 		read: access.userIsAdminOrOwner,
@@ -104,7 +112,11 @@ exports.Card = {
 exports.Contact = {
 	fields: {
 		type: { type: Text },
-		number: { type: Text }
+		number: { type: Text },
+		user: {
+			type: Relationship,
+			ref: 'User'
+		}
 	},
 	access: {
 		read: access.userIsAdminOrOwner,
@@ -163,7 +175,7 @@ exports.Variant = {
 		available: { type: Boolean },
 		product: {
 			type: Relationship,
-			ref: 'Product.variants'
+			ref: 'Product'
 		},
 		optionValues: {
 			type: Relationship,
@@ -186,7 +198,7 @@ exports.OptionValue = {
 		name: { type: Text },
 		option: {
 			type: Relationship,
-			ref: 'Option.values'
+			ref: 'Option'
 		}
 	},
 	labelResolver: item => item.name
@@ -197,7 +209,7 @@ exports.Option = {
 		name: { type: Text },
 		values: {
 			type: Relationship,
-			ref: 'OptionValue.option',
+			ref: 'OptionValue',
 			many: true
 		}
 	},
@@ -209,7 +221,7 @@ exports.Collection = {
 		title: { type: Text },
 		description: { type: Text },
 		slug: { type: Slug, from: 'title' },
-		products: { type: Relationship, ref: 'Product.collections', many: true }
+		products: { type: Relationship, ref: 'Product', many: true }
 	},
 	labelResolver: item => item.title
 };
@@ -220,7 +232,7 @@ exports.Product = {
 		slug: { type: Slug, from: 'title' },
 		categories: {
 			type: Relationship,
-			ref: 'Category.products',
+			ref: 'Category',
 			many: true
 		},
 		status: {
@@ -231,9 +243,9 @@ exports.Product = {
 				{ label: 'Published', value: 'published' }
 			]
 		},
-		collections: { type: Relationship, ref: 'Collection.products', many: true },
+		collections: { type: Relationship, ref: 'Collection', many: true },
 		attribute: { type: Relationship, ref: 'Attribute', many: true },
-		variants: { type: Relationship, ref: 'Variant.product', many: true },
+		variants: { type: Relationship, ref: 'Variant', many: true },
 		body: { type: Wysiwyg },
 		posted: { type: DateTime, format: 'DD/MM/YYYY' },
 		image: { type: CloudinaryImage, adapter: cloudinaryAdapter }
@@ -283,7 +295,7 @@ exports.Category = {
 		slug: { type: Slug, from: 'title' },
 		products: {
 			type: Relationship,
-			ref: 'Product.categories',
+			ref: 'Product',
 			many: true
 		},
 		children: {
@@ -338,7 +350,7 @@ exports.Site = {
 		},
 		pages: {
 			type: Relationship,
-			ref: 'Page.site',
+			ref: 'Page',
 			many: true
 		}
 	},
@@ -359,7 +371,7 @@ exports.Page = {
 		description: { type: Text },
 		site: {
 			type: Relationship,
-			ref: 'Site.pages'
+			ref: 'Site'
 		},
 		status: {
 			type: Select,
@@ -371,7 +383,7 @@ exports.Page = {
 		},
 		sections: {
 			type: Relationship,
-			ref: 'Section.page',
+			ref: 'Section',
 			many: true
 		}
 	},
@@ -392,11 +404,11 @@ exports.Section = {
 		description: { type: Text },
 		page: {
 			type: Relationship,
-			ref: 'Page.sections'
+			ref: 'Page'
 		},
 		blocks: {
 			type: Relationship,
-			ref: 'Block.section',
+			ref: 'Block',
 			many: true
 		}
 	},
@@ -417,7 +429,7 @@ exports.Block = {
 		description: { type: Text },
 		section: {
 			type: Relationship,
-			ref: 'Section.blocks'
+			ref: 'Section'
 		}
 	},
 	plugins: [
@@ -468,7 +480,7 @@ exports.Customer = {
 		lastName: { type: Text },
 		orders: {
 			type: Relationship,
-			ref: 'Order.customer',
+			ref: 'Order',
 			many: true
 		}
 	}
@@ -485,7 +497,7 @@ exports.Order = {
 		status: { type: Number },
 		customer: {
 			type: Relationship,
-			ref: 'Customer.orders'
+			ref: 'Customer'
 		},
 		variants: {
 			type: Relationship,
