@@ -5,7 +5,7 @@ const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('./app-admin-ui');
 // const { NextApp } = require('@keystonejs/app-next');
 
-const initialiseData = require('./initial-data');
+const initializeData = require('./initial-data');
 
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
 const {
@@ -36,7 +36,7 @@ const PROJECT_NAME = 'mercy-app';
 const keystone = new Keystone({
 	name: PROJECT_NAME,
 	adapter: new Adapter(),
-	onConnect: initialiseData
+	onConnect: initializeData
 });
 
 keystone.createList('User', User);

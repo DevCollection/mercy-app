@@ -1,44 +1,25 @@
-const crypto = require('crypto');
-const randomString = () => crypto.randomBytes(6).hexSlice();
+const seed = {
+	User: [
+		{
+			name: 'Admin User',
+			email: 'ichenwu01@gmail.com',
+			isAdmin: true,
+			dob: '1990-01-01',
+			password: 'wuichen01'
+		},
+		{
+			name: 'Demo User',
+			email: 'user@keystonejs.com',
+			isAdmin: false,
+			dob: '1995-06-09',
+			password: 'password'
+		}
+	]
+};
 
 module.exports = async keystone => {
-	// Count existing users
-	const {
-		data: {
-			_allUsersMeta: { count }
-		}
-	} = await keystone.executeQuery(
-		`query {
-      _allUsersMeta {
-        count
-      }
-    }`
-	);
-
-	if (count === 0) {
-		const password = 'wuichen01';
-		const email = 'ichenwu01@gmail.com';
-
-		await keystone.executeQuery(
-			`mutation initialUser($password: String, $email: String) {
-            createUser(data: {name: "Admin", email: $email, isAdmin: true, password: $password}) {
-              id
-            }
-          }`,
-			{
-				variables: {
-					password,
-					email
-				}
-			}
-		);
-
-		console.log(`
-
-User created:
-  email: ${email}
-  password: ${password}
-Please change these details after initial login.
-`);
+	const users = await keystone.lists.User.adapter.findAll();
+	if (!users.length) {
+		await keystone.createItems(seed);
 	}
 };

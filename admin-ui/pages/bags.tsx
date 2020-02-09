@@ -2,7 +2,7 @@ import React from 'react';
 // import Head from 'next/head';
 // import { useRouter } from 'next/router';
 import { Modal } from '@redq/reuse-modal';
-import { withApollo } from 'helper/apollo';
+import { withApollo } from 'helper/apollo-mercy';
 import StoreNav from 'components/StoreNav/StoreNav-mercy';
 import Carousel from 'components/Carousel/Carousel';
 import Banner from 'containers/Banner/Banner-mercy';
