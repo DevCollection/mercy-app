@@ -37,6 +37,9 @@ const Banner: React.FC<BannerProps> = ({
 		pathname = router.pathname;
 	} else {
 		pathname = location ? location.pathname : window.location.pathname;
+		// TODO: need to find a better way.
+		// currently breaking down pathname /admin/bags to bags for searchbox
+		pathname = pathname.split('/')[pathname.split('/').length - 1];
 	}
 
 	const { text } = state;

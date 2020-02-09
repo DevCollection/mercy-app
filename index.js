@@ -8,7 +8,29 @@ const { AdminUIApp } = require('./app-admin-ui');
 const initialiseData = require('./initial-data');
 
 const { MongooseAdapter: Adapter } = require('@keystonejs/adapter-mongoose');
-
+const {
+	Address,
+	Contact,
+	Card,
+	User,
+	Product,
+	Category,
+	Comment,
+	Site,
+	Page,
+	Section,
+	Block,
+	Schedule,
+	Setting,
+	Order,
+	Variant,
+	Attribute,
+	OptionValue,
+	Option,
+	Collection,
+	Customer,
+	Coupon
+} = require('./schema');
 const PROJECT_NAME = 'mercy-app';
 
 const keystone = new Keystone({
@@ -17,42 +39,27 @@ const keystone = new Keystone({
 	onConnect: initialiseData
 });
 
-// Access control functions
-const userIsAdmin = ({ authentication: { item: user } }) =>
-	Boolean(user && user.isAdmin);
-const userOwnsItem = ({ authentication: { item: user } }) => {
-	if (!user) {
-		return false;
-	}
-	return { id: user.id };
-};
-const userIsAdminOrOwner = auth => {
-	const isAdmin = access.userIsAdmin(auth);
-	const isOwner = access.userOwnsItem(auth);
-	return isAdmin ? isAdmin : isOwner;
-};
-const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
-
-keystone.createList('User', {
-	fields: {
-		name: { type: Text },
-		email: {
-			type: Text,
-			isUnique: true
-		},
-		isAdmin: { type: Checkbox },
-		password: {
-			type: Password
-		}
-	},
-	access: {
-		read: access.userIsAdminOrOwner,
-		update: access.userIsAdminOrOwner,
-		create: access.userIsAdmin,
-		delete: access.userIsAdmin,
-		auth: true
-	}
-});
+keystone.createList('User', User);
+keystone.createList('Address', Address);
+keystone.createList('Contact', Contact);
+keystone.createList('Card', Card);
+keystone.createList('Product', Product);
+keystone.createList('Category', Category);
+keystone.createList('Comment', Comment);
+keystone.createList('Site', Site);
+keystone.createList('Page', Page);
+keystone.createList('Section', Section);
+keystone.createList('Customer', Customer);
+keystone.createList('Collection', Collection);
+keystone.createList('Block', Block);
+keystone.createList('Schedule', Schedule);
+keystone.createList('Setting', Setting);
+keystone.createList('Order', Order);
+keystone.createList('Coupon', Coupon);
+keystone.createList('Variant', Variant);
+keystone.createList('Attribute', Attribute);
+keystone.createList('OptionValue', OptionValue);
+keystone.createList('Option', Option);
 
 const authStrategy = keystone.createAuthStrategy({
 	type: PasswordAuthStrategy,
